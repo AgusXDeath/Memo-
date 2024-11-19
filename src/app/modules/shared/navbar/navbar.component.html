@@ -1,0 +1,80 @@
+<!-- Barra de herramientas principal -->
+<mat-toolbar color="primary">
+  <!-- Botón del menú que activa el drawer -->
+  <label class="burger" for="burger" mat-icon-button (click)="drawer.toggle(); toggleDrawer()" matTooltip="menu">
+    <span [ngClass]="{'open': isDrawerOpen}"></span>
+    <span [ngClass]="{'open': isDrawerOpen}"></span>
+    <span [ngClass]="{'open': isDrawerOpen}"></span>
+  </label>
+
+  <span>
+    <!-- Logo de la aplicación -->
+    <img src="../../../../../assets/img/imagenInicios.png" alt="logo de muni" width="100%">
+  </span>
+  <span class="example-spacer"></span>
+
+  <!-- Iterar sobre el menú y mostrar solo el item correspondiente -->
+  <ng-container *ngFor="let item of menu; let i = index">
+    <button mat-button class="toolbar-button" [routerLink]="item.redirect" *ngIf="i === mostrarSoloItemIndex" matTooltip="inicio">
+      <i class="material-icons"> home</i>
+    </button>
+  </ng-container>
+
+  <!-- Menú desplegable de seguridad -->
+  <button mat-button class="toolbar-button" [matMenuTriggerFor]="about" matTooltip="gestion de usuarios">
+    <div class="valign-center">
+      <i class="material-icons"> manage_accounts arrow_drop_down</i>
+    </div>
+  </button>
+  <mat-menu #about="matMenu">
+    <button mat-menu-item *ngFor="let item of menu.slice(1, 5)" [routerLink]="item.redirect">
+      {{ item.nombre }}
+    </button>
+  </mat-menu>
+
+  <!-- Botón de cierre de sesión -->
+  <button class="Btn"  (click)="logout()" routerLink="logout">
+    <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+    <div class="text">Cerrar Sesion</div>
+  </button>
+
+</mat-toolbar>
+
+<!-- Contenedor y drawer -->
+<mat-drawer-container class="example-container" autosize>
+  <!-- Drawer con los elementos del menú -->
+  <mat-drawer #drawer class="mat-drawer" mode="over" hasBackdrop="false" (opened)="toggleDrawer()" (closed)="toggleDrawer()">
+    <header class="sidebar-title">
+      <b> Mensajería</b>
+    </header>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/bandejaDeEntrada'" >
+      <mat-icon>inbox</mat-icon>
+      Bandeja de Entrada
+    </button>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/bandejaDeSalida'" >
+      <mat-icon>upload</mat-icon>
+      Bandeja de Salida
+    </button>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/borradores'">
+      <mat-icon>drafts</mat-icon>
+      Borradores
+    </button>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/favoritos'" >
+      <mat-icon>favorite</mat-icon>
+      Favoritos
+    </button>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/papelera'" >
+      <mat-icon>delete</mat-icon>
+      Papelera
+    </button>
+    <button mat-button class="sidebar-button" [routerLink]="'/dashboard/enviarMensaje'" >
+      <mat-icon>send</mat-icon>
+      Enviar un Mensaje
+    </button>
+  </mat-drawer>
+
+  <!-- Contenido principal que se renderiza con el router -->
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet> <!-- Aquí se renderiza el contenido del dashboard y tablas -->
+  </div>
+</mat-drawer-container>

@@ -1,0 +1,322 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mat-toolbar {
+  position: fixed;
+  color: #002952;
+  background-color: #a8cf45;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.material-icons{
+  font-size: 30px;
+}
+
+.toolbar-button {
+  height: 50px; /* Ajusta el valor según el tamaño del icono */
+  min-width: 50px; /* Ajusta si es necesario */
+}
+
+.example-sidenav-content {
+/*   margin-top: 64px; */ /* Altura del navbar */
+
+  flex: 1;
+}
+
+.mat-drawer-container {
+  flex: 1;
+  display: flex;
+/*   margin-top: 64px; */ /* Igual a la altura del navbar */
+}
+.mat-drawer {
+  margin-top: 64px;
+  width: 220px;
+  background-color: #ffffff;
+  color: #a8cf45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar verticalmente los botones */
+  align-items: center;     /* Centrar horizontalmente los botones */
+}
+
+.mat-drawer-content {
+  padding: 20px;
+  overflow: auto;
+}
+
+.toolbar-button {
+  margin-right: 10px; /* Espacio entre botones */
+}
+
+.valign-center {
+  display: flex;
+  align-items: center;
+}
+
+.example-spacer {
+  flex: 1;
+}
+
+.sidebar-title {
+  color: #002952;
+  margin: 16px 0; 
+  text-align: center;
+}
+
+.sidebar-button {
+  width: 100%;
+  max-width: 200px;
+  margin: 10px 0;
+  background-color: #ffffff; /* Mismo color que el fondo del sidebar */
+  color: #002952;
+  display: flex;
+  justify-content: flex-start; /* Alinear icono y texto a la izquierda */
+  align-items: center;
+}
+
+.sidebar-button mat-icon {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.sidebar-button:hover {
+  background-color: #a8cf45; /* Color del botón al pasar el mouse */
+  color: #002952;
+}
+
+.burger {
+  position: relative;
+  width: 25px;
+  height: 15px;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.burger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #002952;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+  top: 100%;
+  transform-origin: left center;
+  transform: translateY(-100%);
+}
+
+/* Cambia la apariencia del botón cuando el drawer está abierto */
+.burger span.open:nth-of-type(1) {
+  transform: rotate(45deg);
+  top: -2px;
+  left: 5px;
+}
+
+.burger span.open:nth-of-type(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.burger span.open:nth-of-type(3) {
+  transform: rotate(-45deg);
+  top: 15px;
+  left: 5px;
+}
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+ 
+  background-color: #a8cf45;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: #002952;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: #002952;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 198px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #73C0FC;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  left: 2px;
+  bottom: 2px;
+  z-index: 2;
+  background-color: #e8e8e8;
+  transition: .4s;
+}
+
+.sun svg {
+  position: absolute;
+  top: 6px;
+  left: 36px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+.moon svg {
+  fill: #73C0FC;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+/* .switch:hover */.sun svg {
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+ 
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .switch:hover */.moon svg {
+  animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+ 
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.input:checked + .slider {
+  background-color: #183153;
+}
+
+.input:focus + .slider {
+  box-shadow: 0 0 1px #183153;
+}
+
+.input:checked + .slider:before {
+  transform: translateX(30px);
+}

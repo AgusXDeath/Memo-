@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{ data.idGrupo ? 'Editar Función' : 'Agregar Función' }}</h1>
+
+<form [formGroup]="grupoFuncionesForm">
+  <mat-form-field>
+    <mat-label>Grupo</mat-label>
+    <mat-select formControlName="idGrupo" required>
+      <mat-option *ngFor="let grupo of grupos" [value]="grupo.idGrupo">
+        {{ grupo.descripcion }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="grupoFuncionesForm.get('idGrupo')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Función</mat-label>
+    <mat-select formControlName="idFuncion" required>
+      <mat-option *ngFor="let funcion of funciones" [value]="funcion.idFuncion">
+        {{ funcion.descripcion }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="grupoFuncionesForm.get('idFuncion')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+  
+  
+
+  <mat-checkbox formControlName="ver">Ver</mat-checkbox>
+  <mat-checkbox formControlName="insertar">Insertar</mat-checkbox>
+  <mat-checkbox formControlName="modificar">Modificar</mat-checkbox>
+  <mat-checkbox formControlName="borrar">Borrar</mat-checkbox>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button (click)="onSubmit()" [disabled]="grupoFuncionesForm.invalid">Guardar</button>
+  </div>
+</form>

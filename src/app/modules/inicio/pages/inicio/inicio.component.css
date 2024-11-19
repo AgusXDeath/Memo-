@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Altura completa del viewport */
+    background-image: url('../../../../../assets/img/cipolletti.jpg'); /* Reemplaza con una imagen de mayor resolución */
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en la pantalla */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Hace que la imagen de fondo se quede fija cuando se hace scroll */
+    display: flex;
+    align-items: center; /* Centra el formulario verticalmente */
+    justify-content: center; /* Centra el formulario horizontalmente */
+  }

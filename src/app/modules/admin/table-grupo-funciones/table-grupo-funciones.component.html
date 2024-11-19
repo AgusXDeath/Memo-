@@ -1,0 +1,70 @@
+<div class="container">
+    <mat-toolbar>
+      <span>Tabla Grupos Funciones</span>
+    </mat-toolbar>
+</div>
+<div *ngIf="isLoading" class="spinner"></div>
+
+<div *ngIf="!isLoading">
+
+<table mat-table [dataSource]="gruposFunciones" class="mat-elevation-z8">
+
+  <!-- Columna de Grupo -->
+  <ng-container matColumnDef="idGrupo">
+    <th mat-header-cell *matHeaderCellDef> Grupo </th>
+    <td mat-cell *matCellDef="let element"> {{element.idGrupo}} </td>
+  </ng-container>
+
+  <!-- Columna de Función (Ahora mostrando la descripción de la función) -->
+  <ng-container matColumnDef="idFunciones">
+    <th mat-header-cell *matHeaderCellDef> Función </th>
+    <td mat-cell *matCellDef="let element"> {{getFuncionDescripcion(element.idFunciones)}} </td>
+  </ng-container>
+
+  <!-- Columna de Ver -->
+  <ng-container matColumnDef="ver">
+    <th mat-header-cell *matHeaderCellDef> Ver </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox [checked]="convertirStringABoolean(element.ver)" disabled></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Columna de Insertar -->
+  <ng-container matColumnDef="insertar">
+    <th mat-header-cell *matHeaderCellDef> Insertar </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox [checked]="convertirStringABoolean(element.insertar)" disabled></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Columna de Modificar -->
+  <ng-container matColumnDef="modificar">
+    <th mat-header-cell *matHeaderCellDef> Modificar </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox [checked]="convertirStringABoolean(element.modificar)" disabled></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Columna de Borrar -->
+  <ng-container matColumnDef="borrar">
+    <th mat-header-cell *matHeaderCellDef> Borrar </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox [checked]="convertirStringABoolean(element.borrar)" disabled></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Columna de Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="openEditForm(element)">Editar</button>
+      <button mat-button color="warn" (click)="deleteGrupoFuncion(element.idGruposFunciones)">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['idGrupo', 'idFunciones', 'ver', 'insertar', 'modificar', 'borrar', 'acciones']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['idGrupo', 'idFunciones', 'ver', 'insertar', 'modificar', 'borrar', 'acciones'];"></tr>
+</table>
+
+<!-- Botón para agregar una nueva función -->
+<button class="boton-agregar" mat-raised-button (click)="openCreateForm()">Agregar Grupo Función</button>

@@ -1,0 +1,68 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Tabla Usuarios
+        </span>
+      </mat-toolbar>
+  </div>
+  <div *ngIf="isLoading" class="spinner"></div>
+
+<div *ngIf="!isLoading">
+<!-- Tabla para listar los usuarios -->
+<table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+
+  <!-- IdUsuario Column -->
+  <ng-container matColumnDef="idUsuarios">
+    <th mat-header-cell *matHeaderCellDef> idUsuarios </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.idUsuarios}} </td>
+  </ng-container>
+
+  <!-- Columna Nombre -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombreUsuario}} </td>
+  </ng-container>
+
+  <!-- Columna Email -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
+  </ng-container>
+
+  
+<!-- Columna Clave -->
+<ng-container matColumnDef="clave">
+  <th mat-header-cell *matHeaderCellDef> Clave </th>
+  <td mat-cell *matCellDef="let element">
+    <span *ngIf="element.showPassword">{{ element.clave }}</span>
+    <span *ngIf="!element.showPassword">
+      {{ element.clave ? '*'.repeat(element.clave.length) : '' }} <!-- Verifica que Clave no sea undefined -->
+    </span>
+    <button mat-icon-button (click)="togglePasswordVisibility(element)">
+      <mat-icon style="font-size: 16px;">{{ element.showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+
+  <!-- Columna Descripción del Grupo -->
+<ng-container matColumnDef="grupoDescripcion">
+  <th mat-header-cell *matHeaderCellDef> Grupo </th>
+  <td mat-cell *matCellDef="let element"> {{element.DescripcionGrupo}} </td> <!-- Cambié 'usuario' a 'element' -->
+</ng-container>
+
+  <!-- Columna de Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="openEditForm(element)">Editar</button>
+      <button mat-button color="warn" (click)="deleteUsuario(element.idUsuarios)">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <!-- Filas -->
+  <tr mat-header-row *matHeaderRowDef="['idUsuarios','nombre', 'email', 'clave', 'grupoDescripcion', 'acciones']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['idUsuarios','nombre', 'email', 'clave', 'grupoDescripcion', 'acciones'];"></tr>
+</table>
+</div>
+<!-- Botón para abrir el modal de creación -->
+<button class="boton-agregar" mat-raised-button (click)="openCreateForm()">Agregar Usuario</button>

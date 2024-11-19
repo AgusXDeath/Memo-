@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="image-section"></div> <!-- Sección de la imagen de fondo -->
+
+  <div class="body">
+    <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+    <div class="login">
+      
+
+      <form class="img" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <img src="../../../../../assets/img/logo1.png" width="50%">
+        <h1>Iniciar sesión</h1>
+        <mat-form-field class="ancho">
+          <mat-label>Mail</mat-label>
+          <input matInput formControlName="mail" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field class="ancho">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="clave" autocomplete="off">
+        </mat-form-field>
+        <button type="submit" mat-raised-button class="ancho boton color" style="background-color: #a8cf45; color: #002952">Ingresar</button>
+        <br>
+        <br>
+      </form>
+    </div>
+  

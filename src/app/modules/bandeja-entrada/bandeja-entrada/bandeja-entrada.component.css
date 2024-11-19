@@ -1,0 +1,122 @@
+
+  
+  .inbox-table {
+    width: 100%;
+  }
+  
+  table {
+    margin-top: 15px;
+  }
+  
+  .container{
+    margin-top: 64px;
+}
+
+
+/* Estilo del Spinner */
+.spinner {
+  --size: 30px;
+  --first-block-clr: #002952;
+  --second-block-clr: #a8cf45;
+  --clr: #111;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: auto;
+}
+
+.spinner::after,
+.spinner::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  top: 50%;
+  animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+  left: 50%;
+  background: var(--first-block-clr);
+}
+
+.spinner::after {
+  background: var(--second-block-clr);
+  top: calc(50% - var(--size));
+  left: calc(50% - var(--size));
+  animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+@keyframes down {
+  0%, 100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%);
+  }
+  75% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes up {
+  0%, 100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-100%) translateY(-100%);
+  }
+  75% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Estilo para el contenedor row */
+.row {
+  display: flex;
+  flex-direction: row; /* Alineación horizontal */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  gap: 8px; /* Espacio entre los botones */
+}
+
+/* Estilo general para los botones */
+.bin-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 40px;
+  border-radius: 15%;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  color: white; /* Color del ícono */
+}
+
+/* Botón favorito: amarillo */
+.bin-button.favorito {
+  background-color: #ffeb3b; /* Amarillo */
+  color: #ffffff; /* Icono negro */
+}
+
+.bin-button.favorito:hover {
+  background-color: #fdd835; /* Amarillo más oscuro */
+}
+
+/* Botón papelera: rojo */
+.bin-button.papelera {
+  background-color: rgb(255, 95, 95); /* Rojo */
+}
+
+.bin-button.papelera:hover {
+  background-color: rgb(255, 0, 0); /* Rojo más oscuro */
+}
+
+/* Efecto al hacer clic */
+.bin-button:active {
+  transform: scale(0.9);
+}
